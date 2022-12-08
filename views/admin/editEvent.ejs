@@ -1,0 +1,135 @@
+<body>
+    <div class="container">
+        <div class="eventAdmin view">
+            <h3 class="title">Quản lý sự kiện</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Sự Kiện</th>
+                            <th>Tên Sự Kiện</th>
+                            <th>Mô Tả</th>
+                            <th>Thời gian</th>
+                            <th>Địa Điểm</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% events.forEach(event => { %>
+                        <tr>
+                            <td><a style="color: #fff;" class="album" href="<%= `events/${event.MaSuKien}` %>"><%= event.MaSuKien %></a></td>
+                            <td><%= event.TenSuKien %></td>
+                            <td><%= event.MoTa %></td>
+                            <td><%= event.ThoiGian %></td>
+                            <td><%= event.DiaDiem %></td>
+                            <td>
+                                <i class="fas fa-edit" data-masukien="<%= `${event.MaSuKien}` %>" 
+                                    data-tensukien="<%= `${event.TenSuKien}` %>" 
+                                    data-mota="<%= `${event.MoTa}` %>"
+                                    data-thoigian="<%= `${event.ThoiGian}` %>"
+                                    data-diadiem="<%= `${event.DiaDiem}` %>">
+                                </i>
+                                <i class="fas fa-trash" data-masukien="<%= `${event.MaSuKien}` %>"></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addEvent" method="POST">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaSuKien">Mã Sự Kiện</label>
+                        <input type="text" name="MaSuKien" id="MaSuKien" placeholder="Mã sự kiện">
+                        <label for="TenSuKien">Tên sự Kiện</label>
+                        <input type="text" name="TenSuKien" id="TenSuKien" placeholder="Tên sự kiện">
+                        <label for="MoTa">Mô Tả</label>
+                        <input type="text" name="MoTa" id="MoTa" placeholder="Mô Tả">
+                        <label for="ThoiGian">Thời gian</label>
+                        <input type="text" name="ThoiGian" id="ThoiGian" placeholder="Thời gian">
+                        <label for="DiaDiem">Địa điểm</label>
+                        <input type="text" name="DiaDiem" id="DiaDiem" placeholder="Địa điểm">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="edit">
+                <form action="/admin/editevent" method="POST" class="formnew">
+                    <h3>Cập nhật</h3>
+                    <div class="fields">
+                        <input type="hidden" name="MaSuKien" id="MaSuKien" class="MaSuKien"  placeholder="Mã sự kiện">
+                        <label for="TenSuKien">Tên sự Kiện</label>
+                        <input type="text" name="TenSuKien" id="TenSuKien" class="TenSuKien" placeholder="Tên sự kiện">
+                        <label for="MoTa">Mô Tả</label>
+                        <input type="text" name="MoTa" id="MoTa" class="MoTa" placeholder="Mô Tả">
+                        <label for="ThoiGian">Thời gian</label>
+                        <input type="text" name="ThoiGian" id="ThoiGian" class="ThoiGian" placeholder="Thời gian">
+                        <label for="DiaDiem">Địa điểm</label>
+                        <input type="text" name="DiaDiem" id="DiaDiem" class="DiaDiem" placeholder="Địa điểm">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="delete">
+                <form action="/admin/deleteevent" method="POST">
+                    <div class="fields">
+                    <input type="hidden" name="MaSuKien" id="MaSuKien" class="MaSuKien"  placeholder="Mã sự kiện">
+                    <p>Bạn có muốn xóa event này không?</p>
+                    <div class="buttons">
+                        <button type="submit">Xác nhận</button>
+                        <button class="closeBtn">Đóng lại</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-edit")) {
+                let target = event.target.closest(".fa-edit");
+                document.querySelector(".view .edit").classList.add("active");
+                document.querySelector(".view .edit .MaSuKien").value = target.dataset.masukien;
+                document.querySelector(".view .edit .TenSuKien").value = target.dataset.tensukien;
+                document.querySelector(".view .edit .MoTa").value = target.dataset.mota;
+                document.querySelector(".view .edit .ThoiGian").value = target.dataset.thoigian;
+                document.querySelector(".view .edit .DiaDiem").value = target.dataset.diadiem;
+            }
+            else if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaSuKien").value = target.dataset.masukien;
+            }
+        }
+
+        document.querySelector(".view .edit .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .edit").classList.remove("active");
+        }
+
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+
+    </script>
+</body>

@@ -1,0 +1,42 @@
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="playlist-info">
+                <div class="playlist__avatar"></div>
+                <h3 class="playlist__name"></h3>
+                <span>Tao boi </span>
+            </div>
+            <ul class="song-list">
+                <li class="playlist-item">
+                    <span>BÀI HÁT</span>
+                    <span>MV</span>
+                    <span>THỜI GIAN</span>
+                </li>
+    
+                <% songs.forEach(song=> { %>
+                    <li class="playlist-item">
+                        <div class="playlist-item__info">
+                            <span class="playlist-item__name">
+                                <%= song.TenBaiHat %>
+                            </span>
+                            <a class="playlist-item__artist" href="<%= `/artist/${song.TenCaSi}` %>">
+                                <%= song.TenCaSi %>
+                            </a>
+                        </div>
+                        <span> <%= song.TenMV %></span>
+                        <span class="sum-time">
+                            <%= song.ThoiLuong %>
+                        </span>
+
+                    </li>
+                <% }) %>
+                <p class="summary"><%= songs.length%> bài hát &#8226;</p>
+            </ul>
+        </div>
+        
+    </div>
+    <script>
+        document.querySelector('.playlist__name').innerHTML = localStorage.getItem('TenDSPhat');
+        document.querySelector('.username').innerHTML = localStorage.getItem('TenUser');
+    </script>
+</body>

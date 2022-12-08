@@ -1,0 +1,54 @@
+.event .songs{
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+.event h2 {
+    font-size: 2.2rem;
+    margin-right: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.event a{
+    margin-top: 0.5rem;
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+.event .category .list .item {
+    display: inline-block;
+    margin-right: 2rem;
+    color: #fff;
+}
+
+.event .songs .list .item {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr 2fr 1fr;
+    align-items: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid #1b3ca8;
+}
+
+.event .songs .list .item .name, 
+.event .songs .list .item .time, 
+.event .songs .list .item .des{
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.event .songs .list .item .name i {
+    margin-right: 2rem;
+}
+
+.event .songs .list .item .icons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-self: end;
+}
+
+.event img {
+    display: block;
+    width: 100%;
+}

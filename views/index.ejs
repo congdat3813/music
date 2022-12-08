@@ -1,0 +1,36 @@
+<body>
+    <div class="container">
+        <div class="event">
+            <h2>Trang chủ</h2>
+            <img src="/images/banner.png" alt="">
+            <h2>Sự kiện</h2>
+            <div class="songs">
+                <div class="list">
+                    <div class="item">
+                        <div class="name">
+                            Tên sự kiện
+                        </div>
+                        <div class="name">
+                            Mô tả
+                        </div>
+                        <div class="time">Thời gian</div>
+                        <div class="name">
+                            Địa điểm
+                        </div>
+                    </div>
+                    <% event.forEach(event => { %>
+                        <div class="item">
+                            <div class="name"><%= event.TenSuKien %></div>
+                            <div class="des"><%= event.MoTa %></div>
+                            <div class="time"><%= event.ThoiGian %></div>
+                            <div class="name"><%= event.DiaDiem %></div>
+                            <div class="icons">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

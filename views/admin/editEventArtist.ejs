@@ -1,0 +1,82 @@
+<body>
+    <div class="container">
+        <div class="albumAdmin view">
+            <h3 class="title">Quản lý nghệ si trong sự kiện</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Sự Kiện</th>
+                            <th>Mã Nghệ Sĩ</th>
+                            <th>Tên Nghệ Sĩ</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% arts.forEach(art => { %>
+                        <tr>
+                            <td><%= art.MaSuKien %></td>
+                            <td><%= art.MaNgheSi %></td>
+                            <td><%= art.TenNgheSi %></td>
+                            <td>
+                                <i class="fas fa-trash" data-masukien="<%= `${art.MaSuKien}` %>"
+                                    data-manghesi="<%= `${art.MaNgheSi}` %>" ></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addEventArtist" method="POST" class="formnew">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaSuKien">Mã Sự Kiện</label>
+                        <input type="text" name="MaSuKien" id="MaSuKien" placeholder="Mã sự kiện">
+                        <label for="MaNgheSi">Mã Nghệ Sĩ</label>
+                        <input type="text" name="MaNgheSi" id="MaNgheSi" placeholder="Mã nghệ sĩ">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                </form>
+            </div>
+            <div class="delete">
+                <form action="/admin/deleteEventArtist" method="POST">
+                    <div class="fields">
+                        <input type="hidden" name="MaSuKien" id="MaSuKien" class="MaSuKien" placeholder="Mã Album">
+                        <input type="hidden" name="MaNgheSi" id="MaNgheSi" class="MaNgheSi" placeholder="Mã nghệ sĩ">
+                        <p>Bạn có muốn xóa nghệ sĩ khỏi sự kiện này không?</p>
+                        <div class="buttons">
+                            <button type="submit">Xác nhận</button>
+                            <button class="closeBtn">Đóng lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaSuKien").value = target.dataset.masukien;
+                document.querySelector(".view .delete .MaNgheSi").value = target.dataset.manghesi;
+            }
+        }
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+    </script>
+</body>

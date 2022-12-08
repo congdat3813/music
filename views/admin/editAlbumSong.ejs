@@ -1,0 +1,82 @@
+<body>
+    <div class="container">
+        <div class="albumAdmin view">
+            <h3 class="title">Quản lý bài hát album</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Album</th>
+                            <th>Mã bài hát</th>
+                            <th>Tên bài hát</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% songs.forEach(song => { %>
+                        <tr>
+                            <td><%= song.MaAlbum %></td>
+                            <td><%= song.MaBaiHat %></td>
+                            <td><%= song.TenBaiHat %></td>
+                            <td>
+                                <i class="fas fa-trash" data-maalbum="<%= `${song.MaAlbum}` %>"
+                                    data-mabaihat="<%= `${song.MaBaiHat}` %>" ></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addSongAlbum" method="POST" class="formnew">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaAlbum">Mã Album</label>
+                        <input type="text" name="MaAlbum" id="MaAlbum" placeholder="Mã Album">
+                        <label for="MaBaiHat">Mã Bài Hát</label>
+                        <input type="text" name="MaBaiHat" id="MaBaiHat" placeholder="Mã Bài hát">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                </form>
+            </div>
+            <div class="delete">
+                <form action="/admin/deleteSongAlbum" method="POST">
+                    <div class="fields">
+                        <input type="hidden" name="MaAlbum" id="MaAlbum" class="MaAlbum" placeholder="Mã Album">
+                        <input type="hidden" name="MaBaiHat" id="MaBaiHat" class="MaBaiHat" placeholder="Mã Bài hát">
+                        <p>Bạn có muốn xóa bài hát khỏi album này không?</p>
+                        <div class="buttons">
+                            <button type="submit">Xác nhận</button>
+                            <button class="closeBtn">Đóng lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaAlbum").value = target.dataset.maalbum;
+                document.querySelector(".view .delete .MaBaiHat").value = target.dataset.mabaihat;
+            }
+        }
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+    </script>
+</body>

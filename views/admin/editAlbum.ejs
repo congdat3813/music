@@ -1,0 +1,134 @@
+<body>
+    <div class="container">
+        <div class="albumAdmin view">
+            <h3 class="title">Quản lý album</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Album</th>
+                            <th>Tên Album</th>
+                            <th>Ngày tạo</th>
+                            <th >Tổng thời gian</th>
+                            <th >Mã Nghệ Sĩ</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% albums.forEach(album => { %>
+                        <tr>
+                            <td><a style="color: #fff;" class="album" href="<%= `albums/${album.MaAlbum}` %>"><%= album.MaAlbum %></a></td>
+                            <td><%= album.TenAlbum %></td>
+                            <td><%= album.NgayTao %></td>
+                            <td><%= album.TongThoiGian %></td>
+                            <td><%= album.MaNgheSi %></td>
+                            <td>
+                                <i class="fas fa-edit" data-maalbum="<%= `${album.MaAlbum}` %>" 
+                                    data-tenalbum="<%= `${album.TenAlbum}` %>" 
+                                    data-ngaytao="<%= `${album.NgayTao}` %>"
+                                    data-tongthoigian="<%= `${album.TongThoiGian}` %>"
+                                    data-manghesi="<%= `${album.MaNgheSi}` %>">
+                                </i>
+                                <i class="fas fa-trash" data-maalbum="<%= `${album.MaAlbum}` %>"></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addAlbum" method="POST" class="formnew">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaAlbum">Mã Album</label>
+                        <input type="text" name="MaAlbum" id="MaAlbum" placeholder="Mã Album">
+                        <label for="TenAlbum">Tên Album</label>
+                        <input type="text" name="TenAlbum" id="TenAlbum" placeholder="Tên Album">
+                        <label for="NgayTao">Ngày Tạo</label>
+                        <input type="text" name="NgayTao" id="NgayTao" placeholder="Ngày tạo">
+                        <label for="TongThoiGian">Tổng thời gian</label>
+                        <input type="text" name="TongThoiGian" id="TongThoiGian" placeholder="Tổng thời gian">
+                        <label for="MaNgheSi">Mã Nghệ Sĩ</label>
+                        <input type="text" name="MaNgheSi" id="MaNgheSi" placeholder="Mã Nghệ Sĩ">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="edit">
+                <form action="/admin/editAlbum" method="POST">
+                    <h3>Cập nhật</h3>
+                    <div class="fields">
+                        <input type="hidden" name="MaAlbum" id="MaAlbum" class="MaAlbum" placeholder="Mã Album">
+                        <label for="TenAlbum">Tên Album</label>
+                        <input type="text" name="TenAlbum" id="TenAlbum" class="TenAlbum" placeholder="Tên Album">
+                        <label for="NgayTao">Ngày Tạo</label>
+                        <input type="text" name="NgayTao" id="NgayTao" class="NgayTao" placeholder="Ngày tạo">
+                        <label for="TongThoiGian">Tổng thời gian</label>
+                        <input type="text" name="TongThoiGian" id="TongThoiGian" class="TongThoiGian" placeholder="Tổng thời gian">
+                        <label for="MaNgheSi">Mã Nghệ Sĩ</label>
+                        <input type="text" name="MaNgheSi" id="MaNgheSi" class="MaNgheSi" placeholder="Mã Nghệ Sĩ">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="delete">
+                <form action="/admin/deleteAlbum" method="POST">
+                    <div class="fields">
+                        <input type="hidden" name="MaAlbum" id="MaAlbum" class="MaAlbum" placeholder="Mã Album">
+                        <p>Bạn có muốn xóa Album này không?</p>
+                        <div class="buttons">
+                            <button type="submit">Xác nhận</button>
+                            <button class="closeBtn">Đóng lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-edit")) {
+                let target = event.target.closest(".fa-edit");
+                document.querySelector(".view .edit").classList.add("active");
+                document.querySelector(".view .edit .MaAlbum").value = target.dataset.maalbum;
+                document.querySelector(".view .edit .TenAlbum").value = target.dataset.tenalbum;
+                document.querySelector(".view .edit .NgayTao").value = target.dataset.ngaytao;
+                document.querySelector(".view .edit .TongThoiGian").value = target.dataset.tongthoigian;
+                document.querySelector(".view .edit .MaNgheSi").value = target.dataset.manghesi;
+            }
+            else if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaAlbum").value = target.dataset.maalbum;
+            }
+        }
+
+        document.querySelector(".view .edit .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .edit").classList.remove("active");
+        }
+
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+    </script>
+</body>

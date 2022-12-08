@@ -1,0 +1,32 @@
+<body>
+    <div class="container">
+        <div class="album">
+            <h2>Album</h2>
+            <div class="songs">
+                <div class="list">
+                    <div class="item">
+                        <div class="name">
+                            Tên Album
+                        </div>
+                        <div class="time">Tổng thời lượng</div>
+                    </div>
+                    <% album.forEach(album => { %>
+                        <div class="item">
+                            <div class="name">
+                                <i class="fas fa-play"></i>
+                                <div>
+                                    <span><a style="color: #fff;" class="album" href="<%= `/album/${album.TenAlbum}` %>"><%= album.TenAlbum %></a></span>
+                                    <a class="artist" href="<%= `/artist/${album.TenNgheSi}` %>"><%= album.TenNgheSi %></a>
+                                </div>
+                            </div>
+                            <div class="time"><%= album.TongThoiGian %></div>
+                            <div class="icons">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

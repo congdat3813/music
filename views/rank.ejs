@@ -1,0 +1,56 @@
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">BẢNG XẾP HẠNG TUẦN</h1>
+            <div class="header__wrap">
+                <i class="fas fa-play"></i>
+            </div>
+        </header>
+        <div class="rank-main">
+            <div class="rank-pagination">
+                <% countries.forEach(country=> { %>
+                    <a class="rank-pagination__item" href="<%= `/rank/${country.TenQuocGia}` %>">
+                        <%= country.TenQuocGia %>
+                    </a>
+                <% }) %>
+            </div>
+            <ul class="rank-list">
+                <% let i = 0;
+                    for (let i = 0; i < songs.length; i++) {
+                        let listArtist = [];
+                        while(1) {
+                            listArtist.push(songs[i]);
+                            if (!songs[i]) break;
+                            if (!songs[i + 1]) break;
+                            if (songs[i + 1].MaBaiHat != songs[i].MaBaiHat) break;
+                            i++;
+                        } 
+                    %>
+                    <li class="rank-item">
+                        <span><%= songs[i].Hang %></span>
+                        <div class="rank-item__info">
+                            <div class="rank-item__name"><%= songs[i].TenBaiHat %></div>
+                            <% for (let j = 0; j < listArtist.length; j++) {
+                                if (j == listArtist.length - 1) { %>
+                                    <a class="artist" href="<%= `/artist/${listArtist[j].TenCaSi}` %>"><%= listArtist[j].TenCaSi %></a>
+                                <%}
+                                else { %>
+                                    <a class="artist" href="<%= `/artist/${listArtist[j].TenCaSi}` %>"><%= listArtist[j].TenCaSi %>, </a>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <span><%= songs[i].ThoiLuong %></span>
+                        <div class="rank-item__option">
+                            <div class="rank-item__mv">
+                                <span>MV</span>
+                            </div>
+                            <i class="rank-item__icon far fa-heart"></i>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <script src="/javascripts/rankHandle.js"></script>
+</body>

@@ -1,0 +1,503 @@
+*,
+*::before,
+*:active {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: normal;
+    display: grid;
+    grid-template-columns: 32rem auto;
+    grid-template-rows: 10rem auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #131654;
+    z-index: -1;
+}
+
+.header {
+    z-index: 888;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 999;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    width: 32rem;
+    height: 100vh;
+    background-color: #0a1743;
+}
+
+main {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    color: #fff;
+    margin-top: 1rem;
+    color: #dbdbdb;
+}
+
+.btn {
+    background-color: #f31aee;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 30px;
+    font-weight: 400;
+}
+
+#logo {
+    text-align: center;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+#logo span {
+    color: #f31aee;
+}
+
+.header #logo {
+    display: none;
+}
+
+.header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header .header-container .search-box {
+    display: flex;
+    align-items: center;
+}
+
+.header .header-container .search-box input {
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.header .header-container .search-box input,
+.header .header-container .search-box input::placeholder {
+    font-size: 1.6rem;
+    color: #d4d4d4;
+}
+
+.sidebar .list {
+    margin: 7rem 3rem 1rem;
+}
+
+.sidebar .item {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .item span {
+    margin-left: 1rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+@media only screen and (max-width: 1024px) {
+    body {
+        grid-template-columns: 15rem auto;
+    }
+    #logo {
+        font-size: 2.2rem;
+    }
+    .sidebar {
+        width: 15rem;
+    }
+    .sidebar .item {
+        justify-content: center;
+    }
+    .sidebar .item span {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 55%;
+    }
+    body {
+        grid-template-columns: 100%;
+        grid-template-rows: 8.5rem 6rem auto;
+    }
+    .header {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        background-color: #0a1743;
+        width: 100%;
+        position: fixed;
+    }
+    .sidebar {
+        position: relative;
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+        width: 100%;
+        height: auto;
+        background-color: #131654;
+        position: fixed;
+        top: 8.5rem;
+    }
+    main {
+        grid-column: 1 / span 1;
+        grid-row: 3 / span 1;
+    }
+    .header #logo {
+        display: inline-block;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid #373a9b;
+    }
+    .sidebar #logo {
+        display: none;
+    }
+    .sidebar .list {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 0;
+        width: 100%;
+    }
+    .sidebar .item {
+        display: block;
+        margin: 0;
+    }
+    .sidebar .item span {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    html {
+        font-size: 50%;
+    }
+    .container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    .icon {
+        transform: scale(70%);
+    }
+    .header {
+        font-size: 1.2rem;
+    }
+    .header .header-container .search-box .icon {
+        transform: scale(50%);
+    }
+    .header .header-container .search-box input,
+    .header .header-container .search-box input::placeholder {
+        font-size: 1.4rem;
+    }
+    .header .header-container .search-box input {
+        margin-left: 1px;
+    }
+    .header .header-container #login {
+        padding: 1rem;
+    }
+}
+
+.genres .category {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.genres .category h2 {
+    font-size: 2.2rem;
+    margin-right: 3rem;
+}
+
+.genres .category .list {
+    display: flex;
+    align-items: center;
+}
+
+.genres .category .list .item {
+    display: inline-block;
+    margin-right: 2rem;
+    color: #fff;
+}
+
+.genres .songs .list .item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+    /* border-bottom: 1px solid #1b3ca8; */
+    box-shadow: 0 4px 15px 0 #08153f;
+}
+
+.genres .songs .list .item .name {
+    display: flex;
+    align-items: center;
+}
+
+.genres .songs .list .item .name i {
+    margin-right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    background-color: #f31aee;
+    text-align: center;
+    cursor: pointer;
+}
+
+.genres .songs .list .item .name span {
+    display: block;
+}
+
+.genres .songs .list .item .name .artist {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color:#969696;
+}
+
+.genres .songs .list .item .name .artist:hover {
+    color: #f31aee;
+    text-decoration: underline;
+}
+
+.genres .songs .list .item .icons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-self: end;
+}
+
+.artist {
+    display: flex;
+    justify-content: space-between;
+}
+
+.artist .content {
+    max-width: 60rem;
+}
+
+.artist .content .name {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.artist .content .desc {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.artist .content .btn {
+    padding: 1.5rem 2rem;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.artist .avatar {
+    font-size: 15rem;
+    width: 25rem;
+    height: 25rem;
+    line-height: 25rem;
+    text-align: center;
+    border-radius: 100%;
+    background-color: rgb(131, 131, 131);
+    
+}
+
+.admin a {
+    display: block;
+    border: 2px solid #f31aee;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    transition: all 0.5s;
+}
+
+.admin a:hover {
+    background-color: #f31aee;
+}
+
+.view .addBtn {
+    background-color: #007bff;
+    color: #fff;
+    display: inline-block;
+    padding: 1rem;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view .content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.view .content table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+}
+
+.view .content table th,
+.view .content table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.view .content table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #200b81;
+    color: white;
+}
+
+.view .content table .fa-edit,
+.view .content table .fa-trash {
+    display: inline-block;
+    padding: 1rem;
+    cursor: pointer;
+    margin: 2px 1px;
+}
+
+.view .content table .fa-edit {
+    background-color: #007bff;
+}
+
+.view .content table .fa-trash {
+    background-color: #dc3545;
+}
+
+.view .new,
+.view .edit,
+.view .delete {
+    display: none;
+}
+
+.view .new.active,
+.view .edit.active,
+.view .delete.active {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.493);
+}
+
+.view form {
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    width: 500px;
+}
+
+.view form h3 {
+    padding: 2rem;
+    border-bottom: 1px solid #969696;
+}
+
+.view form .fields {
+    padding: 2rem;
+}
+
+.view label,
+.view input,
+textarea {
+    display: block;
+    color: #000;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.view input,
+.view textarea {
+    outline: none;
+    padding: 1rem;
+    border: 1px solid #969696;
+    border-radius: 5px;
+}
+
+.view label {
+    font-weight: 600;
+}
+
+.view .buttons {
+    text-align: right;
+}
+
+.view button {
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.view button[type="submit"] {
+    background-color: #007bff;
+}
+
+.view button.closeBtn {
+    background-color: #6c757d;
+    margin-left: 1rem;
+}
+
+.view .delete p {
+    margin-bottom: 1rem;
+}
+
+.view.artistAdmin .content table td:nth-child(3) {
+    line-height: 1.6;
+    text-align: left;
+}

@@ -1,0 +1,119 @@
+<body>
+    <div class="container">
+        <div class="view artistAdmin">
+            <h3 class="title">Quản lý bài hát</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã ca sĩ</th>
+                            <th>Tên ca sĩ</th>
+                            <th>Giới thiệu</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% solos.forEach(solo => { %>
+                        <tr>
+                            <td><%= solo.MaCaSi %></td>
+                            <td><%= solo.TenCaSi %></td>
+                            <td><%= solo.GioiThieu %></td>
+                            <td>
+                                <i class="fas fa-edit" data-macasi="<%= `${solo.MaCaSi}` %>" 
+                                    data-tencasi="<%= `${solo.TenCaSi}` %>" data-gioithieu="<%= `${solo.GioiThieu}` %>">
+                                </i>
+                                <i class="fas fa-trash" data-macasi="<%= `${solo.MaCaSi}` %>"></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addSolo" method="POST" class="formnew">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaCaSi">Mã ca sĩ</label>
+                        <input type="text" name="MaCaSi" id="MaCaSi" placeholder="Mã ca sĩ">
+                        <label for="TenCaSi">Tên ca sĩ</label>
+                        <input type="text" name="TenCaSi" id="TenCaSi" placeholder="Tên ca sĩ">
+                        <label for="GioiThieu">Giới thiệu</label>
+                        <textarea id="GioiThieu" cols="30" rows="10" name="GioiThieu" placeholder="Giới thiệu"></textarea>
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="edit">
+                <form action="/admin/editSolo" method="POST">
+                    <h3>Cập nhật</h3>
+                    <div class="fields">
+                        <input type="hidden" name="MaCaSi" id="MaCaSi" placeholder="Mã ca sĩ" class="MaCaSi">
+                        <label for="TenCaSi">Tên ca sĩ</label>
+                        <input type="text" name="TenCaSi" id="TenCaSi" placeholder="Tên ca sĩ" class="TenCaSi">
+                        <label for="GioiThieu">Giới thiệu</label>
+                        <textarea id="GioiThieu" cols="30" rows="10" name="GioiThieu" placeholder="Giới thiệu" class="GioiThieu"></textarea>
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="delete">
+                <form action="/admin/deleteSolo" method="POST">
+                    <div class="fields">
+                        <input type="hidden" name="MaCaSi" id="MaCaSi" class="MaCaSi" placeholder="Mã ca sĩ">
+                        <p>Bạn có muốn xóa ca sĩ này không?</p>
+                        <div class="buttons">
+                            <button type="submit">Xác nhận</button>
+                            <button class="closeBtn">Đóng lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-edit")) {
+                let target = event.target.closest(".fa-edit");
+                document.querySelector(".view .edit").classList.add("active");
+                document.querySelector(".view .edit .MaCaSi").value = target.dataset.macasi;
+                document.querySelector(".view .edit .TenCaSi").value = target.dataset.tencasi;
+                document.querySelector(".view .edit .GioiThieu").value = target.dataset.gioithieu;
+            }
+            else if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaCaSi").value = target.dataset.macasi;
+            }
+        }
+
+        document.querySelector(".view .edit .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .edit").classList.remove("active");
+        }
+
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+
+    </script>
+</body>

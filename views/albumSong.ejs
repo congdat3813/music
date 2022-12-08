@@ -1,0 +1,35 @@
+<body>
+    <div class="container">
+        <div class="album">
+            <h2>Album</h2>
+            <a>Tên Album: <%= songs[0].TenAlbum %></a>
+            <a class="artist" href="<%= `/artist/${songs[0].TenNgheSi}` %>">Nghệ sĩ: <%= songs[0].TenNgheSi %></a>
+            <div class="songs">
+                <div class="list">
+                    <div class="item">
+                        <div class="name">
+                            Tên bài hát
+                        </div>
+                        <div class="time">Thời lượng</div>
+                    </div>
+                    <% songs.forEach(songs => { %>
+                        <div class="item">
+                            <div class="name">
+                                <i class="fas fa-play"></i>
+                                <div>
+                                    <span><%= songs.TenBaiHat %></span>
+                                </div>
+                            </div>
+                            <div class="time"><%= songs.ThoiLuong %></div>
+                            <div class="icons">
+                                <span>MV</span>
+                                <i class="fas fa-microphone"></i>
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

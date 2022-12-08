@@ -1,0 +1,53 @@
+<body>
+    <div class="container">
+        <div class="genres">
+            <div class="category">
+                <h2>THỂ LOẠI</h2>
+                <div class="list">
+                    <a class="item" href="/genre">Tất cả</a>
+                    <% genres.forEach(genre => { %>
+                        <a class="item" href="<%= `/genre/${genre.TenTheLoai}` %>"><%= genre.TenTheLoai %></a>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="songs">
+                <div class="list">
+                    <% let i = 0;
+                    for (let i = 0; i < songs.length; i++) {
+                        let listArtist = [];
+                        while(1) {
+                            listArtist.push(songs[i]);
+                            if (!songs[i]) break;
+                            if (!songs[i + 1]) break;
+                            if (songs[i + 1].MaBaiHat != songs[i].MaBaiHat) break;
+                            i++;
+                        } 
+                    %>
+                        <div class="item">
+                            <div class="name">
+                                <i class="fas fa-play"></i>
+                                <div>
+                                    <span><%= songs[i].TenBaiHat %></span>
+                                    <% for (let j = 0; j < listArtist.length; j++) {
+                                        if (j == listArtist.length - 1) { %>
+                                            <a class="artist" href="<%= `/artist/${listArtist[j].TenNgheSi}` %>"><%= listArtist[j].TenNgheSi %></a>
+                                        <%}
+                                        else { %>
+                                            <a class="artist" href="<%= `/artist/${listArtist[j].TenNgheSi}` %>"><%= listArtist[j].TenNgheSi %>, </a>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="time"><%= songs[i].ThoiLuong %></div>
+                            <div class="icons">
+                                <span>MV</span>
+                                <i class="fas fa-microphone"></i>
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

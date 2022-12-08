@@ -1,0 +1,134 @@
+<body>
+    <div class="container">
+        <div class="songAdmin view">
+            <h3 class="title">Quản lý bài hát</h3>
+            <div class="content">
+                <button class="addBtn">Thêm mới</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Bài hát</th>
+                            <th>Tên bài hát</th>
+                            <th>Thời lượng</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% songs.forEach(song => { %>
+                        <tr>
+                            <td><%= song.MaBaiHat %></td>
+                            <td><%= song.TenBaiHat %></td>
+                            <td><%= song.ThoiLuong %></td>
+                            <td>
+                                <i class="fas fa-edit" 
+                                    data-mabaihat="<%= `${song.MaBaiHat}` %>" 
+                                    data-tenbaihat="<%= `${song.TenBaiHat}` %>" 
+                                    data-thoiluong="<%= `${song.ThoiLuong}` %>"
+                                    data-loibaihat="<%= `${song.LoiBaiHat}` %>"
+                                    data-tenmv="<%= `${song.TenMV}` %>">
+                                </i>
+                                <i class="fas fa-trash" data-mabaihat="<%= `${song.MaBaiHat}` %>"></i>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="new">
+                <form action="/admin/addSong" method="POST" class="formnew">
+                    <h3>Thêm mới</h3>
+                    <div class="fields">
+                        <label for="MaBaiHat">Mã bài hát</label>
+                        <input type="text" name="MaBaiHat" id="MaBaiHat" placeholder="Mã bài hát">
+                        <label for="TenBaiHat">Tên bài hát</label>
+                        <input type="text" name="TenBaiHat" id="TenBaiHat" placeholder="Tên bài hát">
+                        <label for="ThoiLuong">Thời lượng</label>
+                        <input type="text" name="ThoiLuong" id="ThoiLuong" placeholder="Thời lượng">
+                        <label for="LoiBaiHat">Lời bài hát</label>
+                        <textarea cols="30" rows="10" name="LoiBaiHat" id="LoiBaiHat" placeholder="Lời bài hát"></textarea>
+                        <label for="TenMV">Tên MV</label>
+                        <input type="text" name="TenMV" id="TenMV" placeholder="Tên MV">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Thêm mới</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="edit">
+                <form action="/admin/editSong" method="POST">
+                    <h3>Cập nhật</h3>
+                    <div class="fields">
+                        <input type="hidden" name="MaBaiHat" id="MaBaiHat" class="MaBaiHat" placeholder="Mã bài hát">
+                        <label for="TenBaiHat">Tên bài hát</label>
+                        <input type="text" name="TenBaiHat" id="TenBaiHat" class="TenBaiHat" placeholder="Tên bài hát">
+                        <label for="ThoiLuong">Thời lượng</label>
+                        <input type="text" name="ThoiLuong" id="ThoiLuong" class="ThoiLuong" placeholder="Thời lượng">
+                        <label for="LoiBaiHat">Lời bài hát</label>
+                        <textarea name="" id="" cols="30" rows="10" name="LoiBaiHat" id="LoiBaiHat" class="LoiBaiHat" placeholder="Lời bài hát"></textarea>
+                        <label for="TenMV">Tên MV</label>
+                        <input type="text" name="TenMV" id="TenMV" placeholder="Tên MV" class="TenMV">
+                        <div class="buttons">
+                            <button class="closeBtn">Đóng lại</button>
+                            <button type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="delete">
+                <form action="/admin/deleteSong" method="POST">
+                    <div class="fields">
+                        <input type="hidden" name="MaBaiHat" id="MaBaiHat" class="MaBaiHat" placeholder="Mã bài hát">
+                        <p>Bạn có muốn xóa bài hát này không?</p>
+                        <div class="buttons">
+                            <button type="submit">Xác nhận</button>
+                            <button class="closeBtn">Đóng lại</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".view .addBtn").onclick = function() {
+            document.querySelector(".view .new").classList.add("active");
+        }
+
+        document.querySelector(".view .new .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .new").classList.remove("active");
+        }
+
+        document.querySelector(".view table").onclick = function() {
+            if (event.target.closest(".fa-edit")) {
+                let target = event.target.closest(".fa-edit");
+                document.querySelector(".view .edit").classList.add("active");
+                document.querySelector(".view .edit .MaBaiHat").value = target.dataset.mabaihat;
+                document.querySelector(".view .edit .TenBaiHat").value = target.dataset.tenbaihat;
+                document.querySelector(".view .edit .ThoiLuong").value = target.dataset.thoiluong;
+                document.querySelector(".view .edit .LoiBaiHat").value = target.dataset.loibaihat;
+                console.log(target.dataset.loibaihat);
+                document.querySelector(".view .edit .TenMV").value = target.dataset.tenmv;
+            }
+            else if (event.target.closest(".fa-trash")) {
+                let target = event.target.closest(".fa-trash");
+                document.querySelector(".view .delete").classList.add("active");
+                document.querySelector(".view .delete .MaBaiHat").value = target.dataset.mabaihat;
+            }
+        }
+
+        document.querySelector(".view .edit .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .edit").classList.remove("active");
+        }
+
+        document.querySelector(".view .delete .closeBtn").onclick = function(event) {
+            event.preventDefault();
+            document.querySelector(".view .delete").classList.remove("active");
+        }
+
+    </script>
+</body>

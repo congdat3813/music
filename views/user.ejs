@@ -1,0 +1,55 @@
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="header__title">CÁ NHÂN</h1>
+        </div>
+
+        <div class="user-main">
+            <div class="user__wrapper">
+                <div class="user__img">
+                    <img src="/images/user-avatar.jpg" alt="">
+                </div>
+                <h3 id="user__name"><%= users[3].TenNguoiDung %></h3>
+                <p>Ngày mua: <%= users[3].NgayMua %></p>
+                <p>Ngày hết hạn: <%= users[3].NgayHetHan %></p>
+            </div>
+
+            <div class="user__wrapper">
+                <h3>Playlist</h3>
+                <ul class="user__playlist">
+                    <div class="user__playlist-create">
+                        <p>&#43;</p>
+                        <p>Tao playlist moi</p>
+                    </div>
+                    <% playlists.forEach(playlist => { %>
+                        <li class="user__playlist-item">
+                            <div class="user__playlist-img"></div>
+                            <a class="user__playlist-info" href="<%= `/playlist/${playlist.TenDanhSachPhat}` %>">
+                                <p><%= playlist.TenDanhSachPhat %></p>
+                                <p><%= playlist.TenNguoiDung %></p>
+                            </a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+
+        
+    </div>
+    <script>
+        const tendsphat = document.querySelectorAll('.user__playlist-info p:first-child');
+        const nguoitao = document.querySelectorAll('.user__playlist-info p:last-child');
+        tendsphat.forEach(ten => {
+            ten.onclick = () => {
+                const nameOfPlaylist = ten.textContent;
+                localStorage.setItem('TenDSPhat', nameOfPlaylist)
+            }
+        })
+        nguoitao.forEach(nguoi => {
+            nguoi.onclick = () => {
+                const nameOfUser = nguoi.textContent;
+                localStorage.setItem('TenUser', nameOfUser)
+            }
+        })
+    </script>
+</body>

@@ -1,0 +1,108 @@
+/* Header */
+header {
+    margin-bottom: 24px;
+}
+.header__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-right: 12px;
+}
+.header__wrap {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #3460f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header__wrap:hover {
+    background-color: #244dd1;
+    cursor: pointer;
+}
+
+/* Rank list */
+.rank-pagination__item {
+    font-size: 2rem;
+    margin-right: 16px;
+    padding: 6px 12px;
+    background-color: aliceblue;
+    color: #000;
+    border-radius: 15px;
+}
+.rank-pagination__item.active {
+    background-color: #f31aee;
+    color: #fff;
+}
+.rank-pagination__item:hover {
+    background-color: #3460f5;
+    text-decoration: none;
+    color: #fff;
+}
+.rank-list {
+    margin-top: 32px;
+}
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #fafafa;
+    padding: 24px 12px;
+}
+.rank-item .artist {
+    display: inline-block;
+    color: #969696;
+}
+.rank-item .artist:hover {
+    color: #f31aee;
+    text-decoration: underline;
+}
+.rank-item > span:first-child {
+    min-width: 43px;
+    -webkit-text-stroke: 1.5px var(--text-primary);
+    opacity: .7;
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+}
+.rank-item__info {
+    width: 450px;
+}
+.rank-item__name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.rank-item__artist {
+    color: #8b95a2
+}
+.rank-item__artist:hover {
+    text-decoration: underline;
+}
+.rank-item__option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rank-item__mv {
+    padding: 3px 6px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+.rank-item__mv:hover {
+    background-color: #3460f5;
+    cursor: pointer;
+}
+.rank-item__icon {
+    margin-right: 12px;
+    cursor: pointer;
+}
+.rank-item__icon.active {
+    color: #3460f5
+}

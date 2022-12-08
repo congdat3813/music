@@ -1,0 +1,77 @@
+.album h2 {
+    font-size: 2.2rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+}
+.album a{
+    margin-top: 0.5rem;
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+.album .artist:hover {
+    color: #f31aee;
+    text-decoration: underline;
+}
+
+.album .category .list {
+    display: flex;
+    align-items: center;
+}
+
+.album .category .list .item {
+    display: inline-block;
+    margin-right: 2rem;
+    color: #fff;
+}
+
+.album .songs .list .item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid #1b3ca8;
+}
+
+.album .songs .list .item .name {
+    display: flex;
+    align-items: center;
+}
+
+.album .songs .list .item .name i {
+    margin-right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 50%;
+    background-color: #f31aee;
+    text-align: center;
+    cursor: pointer;
+}
+
+.album .songs .list .item .name span {
+    display: block;
+}
+.album .songs .list .item .name span .album{
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    color:#fdfdfd;
+}
+.album .songs .list .item .name .artist {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    color:#969696;
+}
+
+.album .songs .list .item .name .artist:hover {
+    color: #f31aee;
+    text-decoration: underline;
+}
+
+.album .songs .list .item .icons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-self: end;
+}
